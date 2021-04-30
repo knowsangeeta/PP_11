@@ -1,0 +1,170 @@
+isValidDate()
+{
+local net=$1
+local DATE=$2
+case "$net" in
+   "YYYYMMDD") 
+    local d=${DATE:8:2}; m=${DATE:5:2}; Y=${DATE:0:4}; 
+   if [[ $m -le 12 && $m -ge 1 && $d -le 31 && $d -ge 1 ]]
+   then
+   echo 0
+   else
+   echo 1
+   fi
+   ;;
+   "DDMMYYYY")
+    local d=${DATE:0:2}; m=${DATE:2:2}; Y=${DATE:4:4}; 
+   if [[ $m -le 12 && $m -ge 1 && $d -le 31 && $d -ge 1 ]]
+   then
+   echo 0
+   else
+   echo 1
+   fi
+   ;;
+   "DD_MM_YYYY")
+   m=${DATE:3:2}; d=${DATE:0:2}; Y=${DATE:6:4}; 
+   if [[ $m -le 12 && $m -ge 1 && $d -le 31 && $d -ge 1 ]]
+   then
+   echo 0
+   else
+   echo 1
+   fi
+   ;;
+   "DD-MM-YYYY")
+   m=${DATE:3:2}; d=${DATE:0:2}; Y=${DATE:6:4}; 
+   if [[ $m -le 12 && $m -ge 1 && $d -le 31 && $d -ge 1 ]]
+   then
+   echo 0
+   else
+   echo 1
+   fi
+   ;;
+   "YY-MM-DD")
+   m=${DATE:3:2}; d=${DATE:0:2}; Y=${DATE:6:4}; 
+   if [[ $m -le 12 && $m -ge 1 && $d -le 31 && $d -ge 1 ]]
+   then
+   echo 0
+   else
+   echo 1
+   fi
+   ;;
+   "MM-DD-YY")
+   m=${DATE:3:2}; d=${DATE:0:2}; Y=${DATE:6:4}; 
+   if [[ $m -le 12 && $m -ge 1 && $d -le 31 && $d -ge 1 ]]
+   then
+   echo 0
+   else
+   echo 1
+   fi
+   ;;
+   "YYMMDD")
+   m=${DATE:3:2}; d=${DATE:0:2}; Y=${DATE:6:4}; 
+   if [[ $m -le 12 && $m -ge 1 && $d -le 31 && $d -ge 1 ]]
+   then
+   echo 0
+   else
+   echo 1
+   fi
+   ;;
+   "YYYYMMDD")
+   m=${DATE:3:2}; d=${DATE:0:2}; Y=${DATE:6:4}; 
+   if [[ $m -le 12 && $m -ge 1 && $d -le 31 && $d -ge 1 ]]
+   then
+   echo 0
+   else
+   echo 1
+   fi
+   ;;
+   "DDMMMYYYY")
+   m=${DATE:3:2}; d=${DATE:0:2}; Y=${DATE:6:4}; 
+   if [[ $m -le 12 && $m -ge 1 && $d -le 31 && $d -ge 1 ]]
+   then
+   echo 0
+   else
+   echo 1
+   fi
+   ;;
+   "YYYY_MM_DD")
+   m=${DATE:3:2}; d=${DATE:0:2}; Y=${DATE:6:4}; 
+   if [[ $m -le 12 && $m -ge 1 && $d -le 31 && $d -ge 1 ]]
+   then
+   echo 0
+   else
+   echo 1
+   fi
+   ;;
+   "YYYY-MM-DD")
+   m=${DATE:3:2}; d=${DATE:0:2}; Y=${DATE:6:4}; 
+   if [[ $m -le 12 && $m -ge 1 && $d -le 31 && $d -ge 1 ]]
+   then
+   echo 0
+   else
+   echo 1
+   fi
+   ;;
+esac
+
+}
+
+
+
+
+
+isNumber()
+{
+    local scale=$1
+if ! [[ "$scale" =~ ^[0-9]+$ ]]
+    then
+        echo 1
+else
+    echo 0
+fi
+}
+
+
+isNumber 123
+
+x=$(isValidDate "DDMMYYYY" 12222021)
+echo $x
+
+
+isAverageCount()
+{
+    local file_avg_count=$1
+    local daily_file=$2
+
+    z=$(echo "scale=1; ($daily_file / $file_avg_count)" |bc)
+    c=$(echo "$z <= 1.1" | bc)
+    d=$(echo "$z >= 0.9" | bc)
+    if [[ $c -eq 1 ]]; then
+        if [[ d -eq 1 ]]; then
+            echo 0
+        else
+            echo 1
+        fi
+    else
+        echo 1
+    fi
+}
+
+isAverageCount 100 80
+
+
+
+isNull()
+{
+    local data=$1
+    if [[ -n "$data" ]]
+    then
+    echo 0
+else
+    echo 1
+fi
+}
+
+isNull 
+
+
+
+
+
